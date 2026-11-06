@@ -16,7 +16,7 @@ struct EditSheet: View {
             HStack {
                             Image(systemName: "list.bullet.circle.fill")
                                 .foregroundStyle(selectedColor)
-                            TextField("Title", text: $title)
+                            Text(title)
                         }
                         ColorChooser(selectedColor: $selectedColor)
             
@@ -28,8 +28,8 @@ struct EditSheet: View {
 }
 
 #Preview {
-    @Previewable @State  var selectedColor: Color = .red
-    @Previewable @State var title: String = "To Do"
-    EditSheet(title: $title, selectedColor: $selectedColor)
-        .preferredColorScheme(.dark)
+   // @Previewable @State   var selectedColor: Color = .red
+  //  @Previewable @State  var title: String = "To Do"
+  //  EditSheet(title: $title, selectedColor: $selectedColor)
+  //      .preferredColorScheme(.dark)
 }
