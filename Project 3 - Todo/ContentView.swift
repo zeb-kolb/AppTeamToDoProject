@@ -35,6 +35,7 @@ struct ContentView: View {
                             Image(systemName: reminder.isCompleted ? "circle.fill" : "circle").foregroundColor(page.color)
                         }
                         TextField("Reminder", text: $reminder.title).foregroundStyle(reminder.isCompleted ? .secondary : .primary)
+                        
                     }.font(.title)
                     
                 }
@@ -48,6 +49,7 @@ struct ContentView: View {
                 Spacer()
                 Button(action: {
                     page.items.append(Reminder(title: ""))
+                    
                 }) {
                     Image(systemName: "plus.circle.fill").foregroundColor(page.color)
                         .font(.system(size: 50))
@@ -59,7 +61,7 @@ struct ContentView: View {
         }
         .sheet(isPresented: $isEditing) {
             // TODO: Add remaining binding
-            EditSheet(title: $page.title, selectedColor: $page.color)
+            EditSheet(title: $page.title, selectedColor: $page.color, isEditing: $isEditing)
         }
     }
 }

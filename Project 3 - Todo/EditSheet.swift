@@ -10,15 +10,24 @@ struct EditSheet: View {
     // TODO: Add title binding
     @Binding var title: String
     @Binding var selectedColor: Color
+    @Binding var isEditing: Bool
     
     var body: some View {
         VStack(spacing: 20) {
             HStack {
                             Image(systemName: "list.bullet.circle.fill")
                                 .foregroundStyle(selectedColor)
-                TextField("Title", text: $title).font(.title)
-                        }
-                        ColorChooser(selectedColor: $selectedColor)
+                Text("List Name").font(.headline)
+                Spacer()
+               
+                    }
+
+            TextField("Title", text: $title).font(.title).background(Color.secondary.opacity(0.15), in: RoundedRectangle(cornerRadius: 16)).onSubmit {
+                isEditing.toggle()
+            }
+            
+            ColorChooser(selectedColor: $selectedColor)
+               
             
             Spacer()
         }
@@ -30,6 +39,7 @@ struct EditSheet: View {
 #Preview {
     @Previewable @State   var selectedColor: Color = .red
     @Previewable @State  var title: String = "To Do"
-    EditSheet(title: $title, selectedColor: $selectedColor)
+    @Previewable @State  var isEditing: Bool = true
+    EditSheet(title: $title, selectedColor: $selectedColor, isEditing: $isEditing)
         .preferredColorScheme(.dark)
 }
